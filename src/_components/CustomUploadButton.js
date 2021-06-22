@@ -20,7 +20,7 @@ const CustomUploadButton = ({ uploadImage, isLoading }) => {
           id="upload"
           disabled={isLoading}
           hidden
-          accept="image/.jpg, image/.jpeg, image/.png "
+          accept="image/*"
           onChange={uploadImage}
           multiple
         />

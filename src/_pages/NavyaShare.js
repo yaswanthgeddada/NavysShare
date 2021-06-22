@@ -10,6 +10,8 @@ import {
 import LinearProgress from "@material-ui/core/LinearProgress";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
+import Resizer from "react-image-file-resizer";
+
 const NavyaShare = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +20,8 @@ const NavyaShare = () => {
   const [progress, setProgress] = useState(0);
   const [imagesList, setImagesList] = useState([]);
   const [urlList, setUrlList] = useState([]);
+  const [thumbnails, setThumbnails] = useState([]);
+
   // console.log("length", urlList.length);
 
   const uploadImage = async (e) => {
@@ -26,9 +30,22 @@ const NavyaShare = () => {
         const newImage = e.target.files[i];
         newImage["id"] = Math.random();
         setImagesList((prevState) => [...prevState, newImage]);
+        Resizer.imageFileResizer(
+          newImage,
+          100,
+          100,
+          "JPEG",
+          100,
+          0,
+          (uri) => {
+            setThumbnails((prevState) => [...prevState, uri]);
+          },
+          "base64"
+        );
       }
     } else {
       setImagesList([...imagesList]);
+      setThumbnails((prevState) => [...prevState]);
     }
   };
 
@@ -50,6 +67,7 @@ const NavyaShare = () => {
       let data = {
         id: dates,
         images: { ...urlList },
+        thumbnails: { ...thumbnails },
       };
 
       // console.log(data);
@@ -57,6 +75,7 @@ const NavyaShare = () => {
       await addImageUrlToDb(data);
       setImagesList([]);
       setUrlList([]);
+      setThumbnails([]);
     } catch (error) {
       console.log(error);
       setError(error);

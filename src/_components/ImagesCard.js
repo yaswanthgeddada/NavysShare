@@ -4,7 +4,6 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ImagesCard = ({ pics }) => {
   const date = new Date(pics.id);
-
   return (
     <Link
       to={`/selected/${pics.picId}`}
@@ -22,7 +21,7 @@ const ImagesCard = ({ pics }) => {
       </div>
 
       <div className="flex flex-wrap  flex-grow px-2 ">
-        {Object.entries(pics.images).map((img) => (
+        {Object.entries(pics.thumbnails).map((img) => (
           <LazyLoadImage
             key={Math.random()}
             src={img[1]}

@@ -4,6 +4,7 @@ import { firestore } from "../_firebase/firebase";
 import { autoDelete } from "../_services/getPhotos";
 import { useHistory } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const AdminDashboard = () => {
   const [images, setImages] = useState();
