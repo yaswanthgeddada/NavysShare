@@ -124,7 +124,7 @@ const NavyaShare = () => {
                 <button
                   onClick={handleUpload}
                   disabled={isLoading}
-                  className="md:flex md:w-56 mt-20 mx-10 w-4/5 fixed bottom-0 overflow-x-hidden md:mx-auto justify-center px-10 items-center bg-ncolor-primary md:h-10 h-16 text-white"
+                  className="md:flex md:w-screen mt-20 mx-10 w-4/5 fixed bottom-0 overflow-x-hidden md:mx-auto justify-center px-10 items-center bg-ncolor-primary md:h-10 h-16 text-white"
                 >
                   {isLoading && urlList.length !== imagesList.length ? (
                     <CircularProgress size={25} />
@@ -133,7 +133,7 @@ const NavyaShare = () => {
                   )}
                 </button>
               ) : (
-                <p className="text-center">select images</p>
+                <p className="text-center"></p>
               )}
             </div>
           )}
