@@ -55,6 +55,12 @@ const Login = () => {
           Submit
         </button>
       </form>
+      <button
+        onClick={() => history.push("/")}
+        className="bg-gray-700 m-4 w-56 mt-10  text-white font-semibold px-5 py-1 rounded-lg  focus:outline-none"
+      >
+        ⬅️ Go back to Home
+      </button>
     </div>
   );
 };

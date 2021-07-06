@@ -61,7 +61,7 @@ const AdminDashboard = () => {
           Logout
         </button>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap justify-center">
         {images ? (
           images.map((data) => <ImagesCard key={data.id} pics={data} />)
         ) : (
