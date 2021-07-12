@@ -26,7 +26,11 @@ const CustomUploadButton = ({ uploadImage, isLoading }) => {
         />
         <FcUpload size="40" />
       </label>
-      <p className="mx-auto mt-3">Select photos</p>
+      <p className="mx-auto mt-3 text-center">
+        {" "}
+        <span class="text-center">👆</span>
+        <br /> Select photos{" "}
+      </p>
     </div>
   );
 };

@@ -11,6 +11,9 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import Resizer from "react-image-file-resizer";
+import toast, { Toaster } from "react-hot-toast";
+
+const notify = () => toast("Here is your toast.");
 
 const NavyaShare = () => {
   const [error, setError] = useState("");
@@ -76,9 +79,11 @@ const NavyaShare = () => {
       setImagesList([]);
       setUrlList([]);
       setThumbnails([]);
+      toast.success("Successfully Uploaded!");
     } catch (error) {
       console.log(error);
       setError(error);
+      toast.success("failed to Upload!");
     }
     setIsSubmiting(false);
   };
@@ -106,7 +111,7 @@ const NavyaShare = () => {
               <></>
             )}
           </div>
-
+          <Toaster position="center" />
           {urlList.length === imagesList.length && urlList.length > 0 ? (
             <div className="text-center sticky bottom-0">
               Click on submit button

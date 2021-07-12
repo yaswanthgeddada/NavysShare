@@ -48,3 +48,7 @@ export const autoDelete = () => {
       });
     });
 };
+
+export const deleteImageGroup = async (docId) => {
+  await firestore.collection("photos").doc(docId).delete();
+};

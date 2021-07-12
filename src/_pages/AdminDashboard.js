@@ -42,7 +42,8 @@ const AdminDashboard = () => {
 
   const signOut = () => {
     localStorage.removeItem("user");
-    history.push("/login");
+    history.push("/");
+    window.location.reload();
   };
 
   return (
