@@ -6,6 +6,9 @@ import { firestore } from "../_firebase/firebase";
 import { FcDownload } from "react-icons/fc";
 import { BsArrowLeftShort } from "react-icons/bs";
 
+import { saveAs } from "file-saver";
+var fs = require("fs");
+
 const SelectedImages = () => {
   const history = useHistory();
   const { id } = useParams();
@@ -34,7 +37,27 @@ const SelectedImages = () => {
   }
 
   const downloadImage = (image) => {
-    window.open(image);
+    // create Canvas
+    fetch(image, {
+      method: "GET",
+    })
+      .then((response) => response.blob())
+      .then((blob) => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `FileName.jpeg`);
+
+        // Append to html link element page
+        document.body.appendChild(link);
+
+        // Start download
+        link.click();
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link);
+      });
   };
 
   return (
