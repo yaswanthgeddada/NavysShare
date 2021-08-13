@@ -10,6 +10,8 @@ const NavyaShare = lazy(() => import("./_pages/NavyaShare"));
 const SelectedImages = lazy(() => import("./_pages/SelectedImages"));
 const Login = lazy(() => import("./_pages/Login"));
 const About = lazy(() => import("./_pages/About"));
+const ShareLink = lazy(() => import("./_pages/ShareLink"));
+const CreateLink = lazy(() => import("./_pages/CreateNewLink"));
 
 const NotFound = lazy(() => import("./_pages/NotFound"));
 
@@ -26,6 +28,16 @@ function App() {
               path="/navyashare"
               exact
               component={currentUser ? Dashboard : Login}
+            />
+            <Route
+              path="/sharelink"
+              exact
+              component={currentUser ? ShareLink : Login}
+            />
+            <Route
+              path="/CreateLink"
+              exact
+              component={currentUser ? CreateLink : Login}
             />
             <Route path="/" exact component={NavyaShare} />
             <Route

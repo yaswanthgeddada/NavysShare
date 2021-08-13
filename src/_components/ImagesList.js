@@ -14,7 +14,7 @@ const ImagesList = ({ image, progress, urlList }) => {
         <div>
           <p>
             {image.name.length > 10
-              ? image.name.substring(1, 7) + "...."
+              ? image.name.substring(1, 20) + "...."
               : image.name}
           </p>
           <p className=" text-sm font-normal ">

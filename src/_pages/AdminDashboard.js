@@ -47,8 +47,15 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      <div>
+    <div className="container-lg w-screen">
+      <div className="bg-ncolor-primary">
+        {/* create new link */}
+        <button
+          onClick={() => history.push("/createlink")}
+          className=" mt-5 mx-5 w-56 justify-center rounded-xl hover:bg-blue-700 px-5 py-1 items-center bg-blue-500 text-white"
+        >
+          New 🦁 Link
+        </button>
         <button
           onClick={handleDelete}
           className="bg-red-700 m-4 w-56  text-white font-semibold px-5 py-1 rounded-lg  focus:outline-none"
@@ -62,15 +69,17 @@ const AdminDashboard = () => {
           Logout
         </button>
       </div>
-      <div className="flex flex-wrap justify-center">
-        {images ? (
-          images.map((data) => <ImagesCard key={data.id} pics={data} />)
-        ) : (
-          <div className="flex flex-col justify-center items-center w-full">
-            <CircularProgress />
-            <p className="text-center font-bold text-gray-600">Loading...</p>
-          </div>
-        )}
+      <div className="flex flex-col justify-center items-center ">
+        <div className="flex flex-wrap justify-center   ">
+          {images ? (
+            images.map((data) => <ImagesCard key={data.id} pics={data} />)
+          ) : (
+            <div className="flex flex-col justify-center items-center w-full">
+              <CircularProgress />
+              <p className="text-center font-bold text-gray-600">Loading...</p>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

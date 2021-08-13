@@ -55,3 +55,12 @@ export const addImageUrlToDb = async (data) => {
     console.log(error);
   }
 };
+
+export const addImageUrlToDbforLinks = async (data) => {
+  try {
+    await firestore.collection("Links").add(data);
+    console.log("photos added");
+  } catch (error) {
+    console.log(error);
+  }
+};

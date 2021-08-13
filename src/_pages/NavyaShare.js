@@ -92,6 +92,8 @@ const NavyaShare = () => {
     <div className="flex flex-col h-full w-screen overflow-x-hidden">
       <div className="h-full w-full">
         {error && "something went wrong"}
+
+        {/* 👆 custom upload button for customers */}
         <CustomUploadButton uploadImage={uploadImage} isLoading={isLoading} />
         <div className="mt-10 mb-20">
           {imagesList &&
