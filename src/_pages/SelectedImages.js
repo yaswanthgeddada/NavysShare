@@ -72,11 +72,14 @@ const SelectedImages = () => {
       <div className="flex flex-wrap border p-4 rounded-b-xl">
         {data &&
           data.images.map((image) => (
-            <div key={image.thumbnailImage} className="p-4 m-2 border-2">
+            <div
+              key={image.thumbnailImage}
+              className="p-4 m-2 border-2 bg-gray-200 rounded-2xl"
+            >
               <img
                 src={image.thumbnailImage}
                 alt=""
-                className="h-56 w-56 object-contain"
+                className="h-40 w-40 object-contain"
               />
               <button
                 onClick={() => downloadImage(image.originalImageUrl)}
@@ -85,7 +88,7 @@ const SelectedImages = () => {
                 <FcDownload size="25" />
               </button>
               <button
-                onClick={() => window.open(image[1])}
+                onClick={() => window.open(image.originalImageUrl)}
                 className="border-2 float-right m-2 mt-2 text-blue-500 rounded ring-0 focus:outline-none hover:bg-ncolor-background "
               >
                 <BiWindows size="25" />

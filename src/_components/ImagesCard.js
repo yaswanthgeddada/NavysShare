@@ -6,6 +6,10 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { deleteImageGroup } from "../_services/getPhotos";
 
 const ImagesCard = ({ pics }) => {
+  if (pics.images.length > 3) {
+    pics.images.length = 3;
+  }
+
   const date = new Date(pics.id);
 
   const deleteHandler = async () => {
@@ -44,6 +48,7 @@ const ImagesCard = ({ pics }) => {
             alt=""
           />
         ))}
+        <div>{pics.images.length >= 3 && ".."} </div>
       </Link>
     </div>
   );

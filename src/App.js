@@ -22,7 +22,13 @@ function App() {
     <div className="overflow-x-hidden">
       <Router>
         <NShareHeader />
-        <Suspense fallback={<p>Loading ....</p>}>
+        <Suspense
+          fallback={
+            <p className="flex justify-center items-center w-screen h-screen bg-gray-400">
+              Loading ....
+            </p>
+          }
+        >
           <Switch>
             <Route
               path="/navyashare"

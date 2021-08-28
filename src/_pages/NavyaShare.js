@@ -40,11 +40,13 @@ const NavyaShare = () => {
   const [imagesList, setImagesList] = useState([]);
   const [urlList, setUrlList] = useState([]);
   const [thumbnails, setThumbnails] = useState([]);
+  const [isResizing, setIsResizing] = useState(false);
 
   // console.log("length", urlList.length);
 
   const uploadImage = async (e) => {
     if (e.target.files[0]) {
+      setIsResizing(true);
       for (let i = 0; i < e.target.files.length; i++) {
         const newImage = e.target.files[i];
         newImage["id"] = Math.random();
@@ -58,6 +60,7 @@ const NavyaShare = () => {
 
         setImagesList((prevState) => [...prevState, imgObj]);
       }
+      setIsResizing(false);
     } else {
       setImagesList([...imagesList]);
       setThumbnails((prevState) => [...prevState]);

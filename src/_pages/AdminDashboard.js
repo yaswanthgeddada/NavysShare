@@ -50,12 +50,12 @@ const AdminDashboard = () => {
     <div className="container-lg w-screen">
       <div className="bg-ncolor-primary">
         {/* create new link */}
-        <button
+        {/* <button
           onClick={() => history.push("/createlink")}
           className=" mt-5 mx-5 w-56 justify-center rounded-xl hover:bg-blue-700 px-5 py-1 items-center bg-blue-500 text-white"
         >
           New 🦁 Link
-        </button>
+        </button> */}
         <button
           onClick={handleDelete}
           className="bg-red-700 m-4 w-56  text-white font-semibold px-5 py-1 rounded-lg  focus:outline-none"
