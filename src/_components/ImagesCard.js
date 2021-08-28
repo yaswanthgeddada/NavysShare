@@ -19,6 +19,8 @@ const ImagesCard = ({ pics }) => {
     }
   };
 
+  // console.log(pics);
+
   return (
     <div className="flex flex-col flex-wrap md:w-1/5 md:h-1/5 w-4/5 md:mx-2 mx-auto border m-2  hover:shadow-lg">
       <div className="border-b-2 p-2 bg-yellow-400 text-xs text-gray-900 font-semibold shadow">
@@ -30,15 +32,15 @@ const ImagesCard = ({ pics }) => {
       </div>
 
       <Link
-        to={`/selected/${pics.picId}`}
-        className="flex flex-wrap  flex-grow px-2 cursor-pointer "
+        to={`/selected/${pics?.picId}`}
+        className="grid grid-flow-col grid-cols-3 grid-rows-1 gap-0 overflow-x-hidden px-2 cursor-pointer "
       >
-        {Object.entries(pics.thumbnails).map((img) => (
+        {pics.images.map((img) => (
           <LazyLoadImage
             key={Math.random()}
-            src={img[1]}
+            src={img.miniThumbnailImage}
             effect="blur"
-            className="h-20 w-20 p-2"
+            className="h-20 w-20 object-contain  p-2"
             alt=""
           />
         ))}

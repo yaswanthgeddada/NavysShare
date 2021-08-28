@@ -15,6 +15,22 @@ import toast, { Toaster } from "react-hot-toast";
 
 const notify = () => toast("Here is your toast.");
 
+const resizeFile = (file, height, width) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      height,
+      width,
+      "JPEG",
+      100,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
+
 const NavyaShare = () => {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -32,19 +48,15 @@ const NavyaShare = () => {
       for (let i = 0; i < e.target.files.length; i++) {
         const newImage = e.target.files[i];
         newImage["id"] = Math.random();
-        setImagesList((prevState) => [...prevState, newImage]);
-        Resizer.imageFileResizer(
-          newImage,
-          100,
-          100,
-          "JPEG",
-          100,
-          0,
-          (uri) => {
-            setThumbnails((prevState) => [...prevState, uri]);
-          },
-          "base64"
-        );
+        const miniThumbnail = await resizeFile(newImage, 100, 100);
+        const thumbnail = await resizeFile(newImage, 150, 150);
+        let imgObj = {
+          originalImage: e.target.files[i],
+          miniThumbnailImage: miniThumbnail,
+          thumbnailImage: thumbnail,
+        };
+
+        setImagesList((prevState) => [...prevState, imgObj]);
       }
     } else {
       setImagesList([...imagesList]);
@@ -67,10 +79,20 @@ const NavyaShare = () => {
     setIsSubmiting(true);
     try {
       const dates = Date.now();
+      console.log(urlList);
+
+      let list = [];
+
+      urlList.forEach((img) => {
+        const { originalImage, ...others } = img;
+        list.push(others);
+      });
+
+      console.log(list);
+
       let data = {
         id: dates,
-        images: { ...urlList },
-        thumbnails: { ...thumbnails },
+        images: list,
       };
 
       // console.log(data);
@@ -97,7 +119,7 @@ const NavyaShare = () => {
           {imagesList &&
             imagesList?.map((image) => (
               <ImagesList
-                key={image.name + image.size}
+                key={image.originalImage.name + image.originalImage.size}
                 image={image}
                 urlList={urlList}
                 progress={progress}

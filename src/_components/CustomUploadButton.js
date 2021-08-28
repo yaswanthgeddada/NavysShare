@@ -28,7 +28,7 @@ const CustomUploadButton = ({ uploadImage, isLoading }) => {
       </label>
       <p className="mx-auto mt-3 text-center">
         {" "}
-        <span class="text-center">👆</span>
+        <span className="text-center">👆</span>
         <br /> Select photos{" "}
       </p>
     </div>
