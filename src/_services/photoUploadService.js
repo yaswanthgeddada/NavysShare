@@ -11,16 +11,20 @@ export const addImageToStorageBucket = async (
 ) => {
   const promises = [];
   imagesList.map((image) => {
-    const imageName = Date.now() + image.name;
+    const imageName = Date.now() + image.originalImage.name;
     setIsLoading(true);
 
-    const uploadTask = storage.ref(`${path}/${imageName}`).put(image);
+    const uploadTask = storage
+      .ref(`${path}/${imageName}`)
+      .put(image.originalImage);
     promises.push(uploadTask);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
         // console.log(snapshot.bytesTransferred);
-        setProgressValue((snapshot.bytesTransferred / image.size) * 100);
+        setProgressValue(
+          (snapshot.bytesTransferred / image.originalImage.size) * 100
+        );
       },
       (error) => {
         console.log(error);
@@ -32,7 +36,11 @@ export const addImageToStorageBucket = async (
           .getDownloadURL()
           .then((url) => {
             // console.log(url);
-            setUrlList((prevState) => [...prevState, url]);
+            let img = image;
+            img.originalImageUrl = url;
+            // image.originalImage = url;
+            // console.log(image);
+            setUrlList((prevState) => [...prevState, img]);
             setIsLoading(false);
           });
       }

@@ -7,9 +7,6 @@ import { FcDownload } from "react-icons/fc";
 import { BsArrowLeftShort } from "react-icons/bs";
 import { BiWindows } from "react-icons/bi";
 
-import { saveAs } from "file-saver";
-var fs = require("fs");
-
 const SelectedImages = () => {
   const history = useHistory();
   const { id } = useParams();
@@ -74,14 +71,15 @@ const SelectedImages = () => {
       </div>
       <div className="flex flex-wrap border p-4 rounded-b-xl">
         {data &&
-          Object.entries(data.images).map((image) => (
-            <div
-              key={image[0]}
-              className="p-2 m-2 border-2 rounded-xl bg-white"
-            >
-              <img src={image[1]} alt="" className="h-56 w-56 object-contain" />
+          data.images.map((image) => (
+            <div key={image.thumbnailImage} className="p-4 m-2 border-2">
+              <img
+                src={image.thumbnailImage}
+                alt=""
+                className="h-56 w-56 object-contain"
+              />
               <button
-                onClick={() => downloadImage(image[1])}
+                onClick={() => downloadImage(image.originalImageUrl)}
                 className="border-2 float-right mt-2 rounded ring-0 focus:outline-none hover:bg-ncolor-background "
               >
                 <FcDownload size="25" />
