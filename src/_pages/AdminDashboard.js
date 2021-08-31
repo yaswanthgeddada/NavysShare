@@ -6,7 +6,11 @@ import { useHistory } from "react-router-dom";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
+import { useAuth } from "../_context/AuthContext";
+
 const AdminDashboard = () => {
+  const { logout } = useAuth();
+
   const [images, setImages] = useState();
   const history = useHistory();
 
@@ -40,8 +44,8 @@ const AdminDashboard = () => {
     }
   };
 
-  const signOut = () => {
-    localStorage.removeItem("user");
+  const signOut = async () => {
+    await logout();
     history.push("/");
     window.location.reload();
   };

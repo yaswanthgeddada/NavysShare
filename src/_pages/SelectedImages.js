@@ -59,7 +59,7 @@ const SelectedImages = () => {
   };
 
   return (
-    <div className="flex flex-col md:mx-20 mx-10 mt-10 bg-gray-100 rounded-xl">
+    <div className="flex flex-col md:mx-20 mx-10  mt-10 bg-gray-100 rounded-xl">
       <div className="border-2 p-4 flex space-x-5 rounded-t-xl ">
         <div
           className="hover:text-ncolor-primary cursor-pointer"
@@ -69,12 +69,12 @@ const SelectedImages = () => {
         </div>
         <div>{date}</div>
       </div>
-      <div className="flex flex-wrap border p-4 rounded-b-xl">
+      <div className="flex flex-wrap items-center md:justify-start  justify-center  border p-4 rounded-b-xl">
         {data &&
           data.images.map((image) => (
             <div
               key={image.thumbnailImage}
-              className="p-4 m-2 border-2 bg-gray-200 rounded-2xl"
+              className="p-4 m-2 border-2 bg-gray-200 rounded-2xl shadow-md"
             >
               <img
                 src={image.thumbnailImage}

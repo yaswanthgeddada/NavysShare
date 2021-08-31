@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import NShareHeader from "./_components/NShareHeader";
 
-import { useUser } from "./_context/UserContext";
+import { useAuth } from "./_context/AuthContext";
 
 const Dashboard = lazy(() => import("./_pages/AdminDashboard"));
 const NavyaShare = lazy(() => import("./_pages/NavyaShare"));
@@ -16,7 +16,7 @@ const CreateLink = lazy(() => import("./_pages/CreateNewLink"));
 const NotFound = lazy(() => import("./_pages/NotFound"));
 
 function App() {
-  const { currentUser } = useUser();
+  const { currentUser } = useAuth();
 
   return (
     <div className="overflow-x-hidden">
